@@ -42,6 +42,25 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  function handleTextToSpeech() {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    synth.speak(utterance);
+    return undefined;
+  }
+
+  function handleSpeechToText() {
+    const speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new speechRecognition();
+    recognition.lang = 'en-US';
+    recognition.start();
+    recognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript;
+      setText(transcript);
+    };
+    return undefined;
+  }
+
   return (
     <>
       <div
@@ -84,6 +103,10 @@ export default function TextForm(props) {
         <button className="btn btn-primary" onClick={handleExtraSpaces}>
           Remove Extra Spaces
         </button>
+        &nbsp;
+        <button className="btn btn-primary" onClick={handleSpeechToText}>Speech to Text</button>
+        &nbsp;
+        <button className="btn btn-primary" onClick={handleTextToSpeech}>Text to Speech</button>
       </div>
       <div className="container my-4" style={{
           
