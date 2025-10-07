@@ -4,6 +4,7 @@ import About from "./component/About";
 import Navbar from "./component/Navbar";
 import TextForm from "./component/TextForm";
 import Alert from "./component/Alert";
+import Footer from "./component/Footer";
 
 import React from "react";
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
@@ -36,7 +37,6 @@ function App() {
 
   return (
     <>
-
       <Router>
         <Navbar
           title="TextUtils"
@@ -57,9 +57,15 @@ function App() {
               />
             }
             />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={
+                <About
+                    mode={mode}
+                />}
+            />
             </Routes>
         </div>
+          <Footer
+          mode={mode}/>
       </Router>
     </>
   );
