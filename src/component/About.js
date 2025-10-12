@@ -2,31 +2,13 @@ import React, {useState} from "react";
 
 export default function About(props) {
 
-    const [myStyle,setmyStyle]=useState({
-        color: 'black',
-        backgroundColor: 'white'
-    })
 
-    const [btntext,setBtnText] = useState("Enable Dark Mode");
-
-    const toggleStyle = () =>{
-        if(myStyle.color === 'white')
-        {
-            setmyStyle({
-                color: 'black',
-                backgroundColor: 'white',
-                border: '1px solid black'
-            })
-            setBtnText("Enable Dark Mode");
-        }
-        else{
-            setmyStyle({
-                color: 'white',
-                backgroundColor:'black'
-            })
-            setBtnText("Enable Light Mode");
-        }
+    const myStyle = {
+        color: props.mode === "light" ? "black" : "white",
+        backgroundColor: props.mode === "light" ? "white" : "#042743",
+        border: props.mode === "light" ? "1px solid black" : "1px solid white"
     }
+
 
   return (
     <div className={`container text-${(props.mode === "light")?"dark":"light"} bg-${props.mode === "light" ? "white" : "#042743"}`}>
